@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cti_source_list" model="ir.ui.view">
+        <field name="name">cti.source.list</field>
+        <field name="model">cti.source</field>
+        <field name="arch" type="xml">
+            <list string="Fuentes de inteligencia">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="source_type"/>
+                <field name="reliability"/>
+                <field name="website_url" widget="url"/>
+                <field name="last_verified"/>
+                <field name="active" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cti_source_form" model="ir.ui.view">
+        <field name="name">cti.source.form</field>
+        <field name="model">cti.source</field>
+        <field name="arch" type="xml">
+            <form string="Fuente de inteligencia">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Nombre de la fuente"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="source_type"/>
+                            <field name="reliability"/>
+                        </group>
+                        <group>
+                            <field name="website_url" widget="url"/>
+                            <field name="last_verified"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Descripción">
+                        <field name="description" nolabel="1" placeholder="Información sobre la fuente..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cti_source_search" model="ir.ui.view">
+        <field name="name">cti.source.search</field>
+        <field name="model">cti.source</field>
+        <field name="arch" type="xml">
+            <search string="Buscar fuentes">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="source_type"/>
+                <filter name="active_only" string="Activas" domain="[('active', '=', True)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_type" string="Tipo" context="{'group_by': 'source_type'}"/>
+                    <filter name="group_reliability" string="Confiabilidad" context="{'group_by': 'reliability'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cti_source" model="ir.actions.act_window">
+        <field name="name">Fuentes</field>
+        <field name="res_model">cti.source</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cti_source_search"/>
+        <field name="context">{'search_default_active_only': 1}</field>
+    </record>
+</odoo>

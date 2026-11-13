@@ -1,33 +1,27 @@
+
 {
-    'name': "cti_core",
-
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
-
+    'name': 'CTI Core',
+    'summary': 'Núcleo central de la plataforma Cyber Threat Intelligence',
     'description': """
-Long description of module's purpose
+        CTI Core proporciona la estructura central de la plataforma:
+        - Gestión de entidades e indicadores de compromiso (IoC).
+        - Catálogo de fuentes de inteligencia.
+        - Trazabilidad y auditoría de operaciones.
+        - Control de acceso por roles.
     """,
-
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
-
-    # any module necessary for this one to work correctly
+    'author': 'CTI Platform',
+    'category': 'Services/Cybersecurity',
+    'version': '19.0.1.0.0',
+    'license': 'LGPL-3',
     'depends': ['base'],
-
-    # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/cti_entity_views.xml',
+        'views/cti_source_views.xml',
+        'views/cti_audit_log_views.xml',
+        'views/cti_menus.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'installable': True,
+    'application': True,
 }
-

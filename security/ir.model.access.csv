@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_cti_core_cti_core,cti_core.cti_core,model_cti_core_cti_core,base.group_user,1,1,1,1
+access_cti_entity_user,cti.entity user,model_cti_entity,cti_core.group_cti_user,1,1,1,0
+access_cti_entity_manager,cti.entity manager,model_cti_entity,cti_core.group_cti_manager,1,1,1,1
+access_cti_source_user,cti.source user,model_cti_source,cti_core.group_cti_user,1,1,1,0
+access_cti_source_manager,cti.source manager,model_cti_source,cti_core.group_cti_manager,1,1,1,1
+access_cti_audit_log_user,cti.audit.log user,model_cti_audit_log,cti_core.group_cti_user,1,0,0,0
+access_cti_audit_log_manager,cti.audit.log manager,model_cti_audit_log,cti_core.group_cti_manager,1,0,0,0

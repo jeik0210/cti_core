@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_cti_root" name="CTI" sequence="35" groups="cti_core.group_cti_user"/>
+    <menuitem id="menu_cti_intelligence" name="Inteligencia" parent="menu_cti_root" sequence="10" groups="cti_core.group_cti_user"/>
+    <menuitem id="menu_cti_entities" name="Entidades e IoC" parent="menu_cti_intelligence"
+              action="action_cti_entity" sequence="10" groups="cti_core.group_cti_user"/>
+    <menuitem id="menu_cti_sources" name="Fuentes" parent="menu_cti_intelligence"
+              action="action_cti_source" sequence="20" groups="cti_core.group_cti_user"/>
+    <menuitem id="menu_cti_audit" name="Auditoría" parent="menu_cti_root"
+              action="action_cti_audit_log" sequence="20" groups="cti_core.group_cti_user"/>
+</odoo>

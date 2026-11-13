@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cti_audit_log_list" model="ir.ui.view">
+        <field name="name">cti.audit.log.list</field>
+        <field name="model">cti.audit.log</field>
+        <field name="arch" type="xml">
+            <list string="Auditoría CTI" create="0" edit="0" delete="0">
+                <field name="create_date" string="Fecha"/>
+                <field name="user_id"/>
+                <field name="operation"/>
+                <field name="model_name"/>
+                <field name="name" string="Registro"/>
+                <field name="record_id"/>
+                <field name="details" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cti_audit_log_form" model="ir.ui.view">
+        <field name="name">cti.audit.log.form</field>
+        <field name="model">cti.audit.log</field>
+        <field name="arch" type="xml">
+            <form string="Evento de auditoría" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date" string="Fecha"/>
+                            <field name="user_id"/>
+                            <field name="operation"/>
+                        </group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="record_id"/>
+                            <field name="name" string="Registro"/>
+                        </group>
+                    </group>
+                    <field name="details"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cti_audit_log_search" model="ir.ui.view">
+        <field name="name">cti.audit.log.search</field>
+        <field name="model">cti.audit.log</field>
+        <field name="arch" type="xml">
+            <search string="Buscar eventos de auditoría">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="operation"/>
+                <field name="model_name"/>
+                <filter name="filter_create_date" string="Fecha" date="create_date"/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_user" string="Usuario" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_operation" string="Operación" context="{'group_by': 'operation'}"/>
+                    <filter name="group_model" string="Modelo" context="{'group_by': 'model_name'}"/>
+                    <filter name="group_date" string="Fecha" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cti_audit_log" model="ir.actions.act_window">
+        <field name="name">Auditoría</field>
+        <field name="res_model">cti.audit.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cti_audit_log_search"/>
+    </record>
+</odoo>
