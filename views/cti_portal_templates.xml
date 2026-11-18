@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_breadcrumbs_cti_services" name="Consultas portal breadcrumbs" inherit_id="portal.portal_breadcrumbs" priority="45">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'cti_intelligence'" class="breadcrumb-item active">Catálogo</li>
+            <li t-if="page_name == 'cti_intelligence_subcategory'" class="breadcrumb-item">
+                <a href="/my/consultas">Catálogo</a>
+            </li>
+            <li t-if="page_name == 'cti_intelligence_subcategory'" class="breadcrumb-item active" t-out="subcategory.name"/>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_cti_services" name="Consultas OSINT" inherit_id="portal.portal_my_home" priority="45">
+        <xpath expr="//div[@id='portal_common_category']" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                <t t-set="title">Catálogo de inteligencia</t>
+                <t t-set="text">Explora las categorías y subcategorías disponibles</t>
+                <t t-set="url" t-value="'/my/consultas'"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_landing" name="Portal de consultas">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure o_cti_landing">
+                <section class="o_cti_hero">
+                    <div class="container">
+                        <div class="row align-items-center g-4 py-4 py-lg-5 o_cti_hero_inner">
+                        <div class="col-lg-7">
+                            <p class="o_cti_eyebrow">INTELIGENCIA ABIERTA · PERÚ</p>
+                            <h1 class="o_cti_hero_title">Inteligencia organizada en un solo lugar.</h1>
+                            <p class="o_cti_hero_description">Explora capacidades de inteligencia organizadas en cuatro categorías y sus áreas especializadas.</p>
+                            <a t-if="is_public" class="o_cti_primary_link" href="/web/login?redirect=/my/consultas">Ingresar al portal <i class="fa fa-arrow-right" aria-hidden="true"/></a>
+                            <a t-else="" class="o_cti_primary_link" href="/my/consultas">Ir al catálogo <i class="fa fa-arrow-right" aria-hidden="true"/></a>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="o_cti_hero_panel">
+                                <div class="o_cti_panel_header">
+                                    <span>Índice de inteligencia</span>
+                                    <span><i class="fa fa-database" aria-hidden="true"/> 4 categorías</span>
+                                </div>
+                                <div class="o_cti_panel_item">
+                                    <span class="o_cti_panel_icon"><i class="fa fa-id-card" aria-hidden="true"/></span>
+                                    <span><strong>Identidades</strong><small>Teléfonos, redes sociales y correos</small></span>
+                                </div>
+                                <div class="o_cti_panel_item">
+                                    <span class="o_cti_panel_icon"><i class="fa fa-globe" aria-hidden="true"/></span>
+                                    <span><strong>Infraestructura digital</strong><small>Dominios, archivos y exposición</small></span>
+                                </div>
+                                <div class="o_cti_panel_item">
+                                    <span class="o_cti_panel_icon"><i class="fa fa-map-marker" aria-hidden="true"/></span>
+                                    <span><strong>Empresas, finanzas y geoespacial</strong><small>Otras áreas especializadas</small></span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_query_services" name="Catálogo de inteligencia">
+        <t t-call="portal.portal_layout">
+            <t t-set="page_name" t-value="'cti_intelligence'"/>
+            <div class="container py-4 o_cti_member o_cti_catalog_page">
+                <canvas class="o_cti_network_canvas" aria-hidden="true"/>
+                <div class="o_cti_catalog_utility">
+                    <div class="o_cti_catalog_system">
+                        <span class="o_cti_status_light" aria-hidden="true"/>
+                        <span>UNIDAD DE INVESTIGACIÓN</span>
+                        <span class="o_cti_utility_divider">/</span>
+                        <span>ÍNDICE DE CAPACIDADES</span>
+                    </div>
+                    <span class="o_cti_catalog_edition">CTI · CATÁLOGO 01</span>
+                </div>
+
+                <header class="o_cti_catalog_heading">
+                    <div>
+                        <p class="o_cti_eyebrow">MAPA DE INTELIGENCIA <span>—</span> ÁREAS ESPECIALIZADAS</p>
+                        <h1>Catálogo de inteligencia</h1>
+                        <p>Selecciona un dominio para explorar sus capacidades de investigación.</p>
+                    </div>
+                    <div class="o_cti_catalog_summary">
+                        <span class="o_cti_summary_label">DOMINIOS ACTIVOS</span>
+                        <strong t-out="len(catalog)"/>
+                    </div>
+                </header>
+
+                <section class="o_cti_intelligence_catalog" aria-label="Categorías de inteligencia">
+                    <t t-foreach="catalog" t-as="item">
+                        <t t-set="category" t-value="item['category']"/>
+                        <section t-attf-class="o_cti_intelligence_group o_cti_domain_#{category.sequence}">
+                            <header class="o_cti_group_heading">
+                                <span class="o_cti_group_index" t-out="'%02d' % (item_index + 1)"/>
+                                <span class="o_cti_group_icon">
+                                    <i t-attf-class="fa #{category.icon or 'fa-folder'}" aria-hidden="true"/>
+                                </span>
+                                <div class="o_cti_group_title">
+                                    <span class="o_cti_group_code" t-out="category.code"/>
+                                    <h2 t-out="category.name"/>
+                                </div>
+                            </header>
+                            <div class="o_cti_subgroup_grid">
+                                <t t-foreach="item['subcategories']" t-as="subcategory">
+                                    <a class="o_cti_subgroup_card o_cti_subgroup_link"
+                                       t-att-href="'/my/consultas/' + subcategory.code"
+                                       target="_blank" rel="noopener"
+                                       t-attf-aria-label="Abrir #{subcategory.name} en una pestaña nueva">
+                                        <span class="o_cti_subgroup_content">
+                                            <span class="o_cti_subgroup_code" t-out="subcategory.code"/>
+                                            <h3 t-out="subcategory.name"/>
+                                        </span>
+                                        <i class="fa fa-external-link o_cti_subgroup_open" aria-hidden="true"/>
+                                    </a>
+                                </t>
+                            </div>
+                        </section>
+                    </t>
+                </section>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_intelligence_subcategory" name="Espacio de subcategoría">
+        <t t-call="portal.portal_layout">
+            <t t-set="page_name" t-value="'cti_intelligence_subcategory'"/>
+            <main class="container py-4 o_cti_member o_cti_subcategory_page">
+                <header class="o_cti_member_heading">
+                    <p class="o_cti_eyebrow" t-out="category.name"/>
+                    <h1 t-out="subcategory.name"/>
+                    <p class="o_cti_subcategory_code" t-out="subcategory.code"/>
+                </header>
+                <section class="o_cti_subcategory_workspace" aria-label="Área de trabajo"/>
+            </main>
+        </t>
+    </template>
+</odoo>

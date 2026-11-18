@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="category_identities" model="cti.intelligence.category">
+            <field name="name">Inteligencia de Identidades</field>
+            <field name="code">IDENTITYINT</field>
+            <field name="icon">fa-id-card</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="subcategory_phoneint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia Telefónica</field>
+            <field name="code">PHONEINT</field>
+            <field name="category_id" ref="category_identities"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="subcategory_socmint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Redes Sociales</field>
+            <field name="code">SOCMINT</field>
+            <field name="category_id" ref="category_identities"/>
+            <field name="sequence">20</field>
+        </record>
+        <record id="subcategory_emailint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Correos Electrónicos</field>
+            <field name="code">EMAILINT</field>
+            <field name="category_id" ref="category_identities"/>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="category_digital_infrastructure" model="cti.intelligence.category">
+            <field name="name">Inteligencia de Infraestructura y Contenido Digital</field>
+            <field name="code">DIGITALINT</field>
+            <field name="icon">fa-globe</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="subcategory_techint" model="cti.intelligence.subcategory">
+            <field name="name">Dominios, IP y URLs</field>
+            <field name="code">TECHINT</field>
+            <field name="category_id" ref="category_digital_infrastructure"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="subcategory_fileint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Archivos y Malware</field>
+            <field name="code">FILEINT</field>
+            <field name="category_id" ref="category_digital_infrastructure"/>
+            <field name="sequence">20</field>
+        </record>
+        <record id="subcategory_exposureint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Exposición Digital</field>
+            <field name="code">EXPOSUREINT</field>
+            <field name="category_id" ref="category_digital_infrastructure"/>
+            <field name="sequence">30</field>
+        </record>
+        <record id="subcategory_inminti" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Imágenes</field>
+            <field name="code">INMINT</field>
+            <field name="category_id" ref="category_digital_infrastructure"/>
+            <field name="sequence">40</field>
+        </record>
+
+        <record id="category_business_finance" model="cti.intelligence.category">
+            <field name="name">Inteligencia Empresarial y Financiera</field>
+            <field name="code">BIZFININT</field>
+            <field name="icon">fa-building</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="subcategory_bizint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia Empresarial</field>
+            <field name="code">BIZINT</field>
+            <field name="category_id" ref="category_business_finance"/>
+            <field name="sequence">10</field>
+        </record>
+        <record id="subcategory_finint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia de Fraude Financiero</field>
+            <field name="code">FININT</field>
+            <field name="category_id" ref="category_business_finance"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="category_geospatial" model="cti.intelligence.category">
+            <field name="name">Inteligencia Geoespacial</field>
+            <field name="code">GEOINT</field>
+            <field name="icon">fa-map-marker</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="subcategory_geoint" model="cti.intelligence.subcategory">
+            <field name="name">Inteligencia Geoespacial</field>
+            <field name="code">GEOINT</field>
+            <field name="category_id" ref="category_geospatial"/>
+            <field name="sequence">10</field>
+        </record>
+    </data>
+</odoo>

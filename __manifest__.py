@@ -1,27 +1,30 @@
-
 {
     'name': 'CTI Core',
-    'summary': 'Núcleo central de la plataforma Cyber Threat Intelligence',
+    'summary': 'Catálogo de inteligencia con categorías y subcategorías',
     'description': """
-        CTI Core proporciona la estructura central de la plataforma:
-        - Gestión de entidades e indicadores de compromiso (IoC).
-        - Catálogo de fuentes de inteligencia.
-        - Trazabilidad y auditoría de operaciones.
-        - Control de acceso por roles.
+        Organiza las capacidades de inteligencia en categorías y subcategorías,
+        y las presenta en un catálogo privado para usuarios del portal.
     """,
     'author': 'CTI Platform',
-    'category': 'Services/Cybersecurity',
-    'version': '19.0.1.0.0',
+    'category': 'Services',
+    'version': '19.0.3.9.0',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': ['base', 'portal', 'website'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/cti_entity_views.xml',
-        'views/cti_source_views.xml',
-        'views/cti_audit_log_views.xml',
+        'data/intelligence_catalog.xml',
+        'data/website_menu.xml',
+        'views/cti_intelligence_views.xml',
+        'views/cti_portal_templates.xml',
         'views/cti_menus.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'cti_core/static/src/js/cti_network_background.js',
+            'cti_core/static/src/scss/cti_portal.scss',
+        ],
+    },
     'installable': True,
     'application': True,
 }

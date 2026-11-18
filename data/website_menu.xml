@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="website_menu_cti_portal" model="website.menu">
+        <field name="name">Portal de consultas</field>
+        <field name="url">/portal</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="website_id" ref="website.default_website"/>
+        <field name="sequence">40</field>
+    </record>
+</odoo>

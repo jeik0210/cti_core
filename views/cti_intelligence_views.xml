@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cti_intelligence_category_list" model="ir.ui.view">
+        <field name="name">cti.intelligence.category.list</field>
+        <field name="model">cti.intelligence.category</field>
+        <field name="arch" type="xml">
+            <list string="Categorías de inteligencia">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="icon" optional="hide"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cti_intelligence_category_form" model="ir.ui.view">
+        <field name="name">cti.intelligence.category.form</field>
+        <field name="model">cti.intelligence.category</field>
+        <field name="arch" type="xml">
+            <form string="Categoría de inteligencia">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="code"/>
+                        <field name="icon"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                    <field name="subcategory_ids">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="active"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cti_intelligence_category_search" model="ir.ui.view">
+        <field name="name">cti.intelligence.category.search</field>
+        <field name="model">cti.intelligence.category</field>
+        <field name="arch" type="xml">
+            <search string="Buscar categorías">
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="active_only" string="Activas" domain="[('active', '=', True)]"/>
+                <filter name="inactive_only" string="Archivadas" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cti_intelligence_category" model="ir.actions.act_window">
+        <field name="name">Categorías de inteligencia</field>
+        <field name="res_model">cti.intelligence.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cti_intelligence_category_search"/>
+        <field name="context">{'search_default_active_only': 1}</field>
+    </record>
+</odoo>
