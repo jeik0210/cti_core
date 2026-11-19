@@ -200,7 +200,41 @@
 .o_cti_subgroup_code { display: inline-block; padding: .12rem .35rem; border-radius: .2rem; background: var(--cti-domain-soft); color: var(--cti-domain-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: .64rem; font-weight: 700; letter-spacing: .08em; }
 .o_cti_subgroup_card h3 { margin: .25rem 0 0; color: #26312c; font-size: .92rem; font-weight: 600; line-height: 1.35; }
 .o_cti_subgroup_open { flex: 0 0 auto; color: #9a8054; font-size: .72rem; }
-.o_cti_subcategory_workspace { min-height: 55vh; }
+.o_cti_subcategory_workspace {
+    display: grid;
+    min-height: 55vh;
+    grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid #dce6df;
+    border-radius: .55rem;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 4px 18px rgba(31, 48, 40, .05);
+}
+.o_cti_workspace_sidebar { padding: 1.1rem .65rem; border-right: 1px solid #183556; background: #173253; color: #e5edf7; }
+.o_cti_workspace_menu_title { margin: 0 .65rem .65rem; color: #a8bdd3; font-family: "SFMono-Regular", Consolas, monospace; font-size: .62rem; font-weight: 700; letter-spacing: .12em; }
+.o_cti_workspace_group_toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .45rem; padding: .8rem .65rem; border: 1px solid rgba(190, 212, 235, .12); border-radius: .45rem; background: #1d3b60; color: #e4edf8; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-align: left; }
+.o_cti_workspace_group_toggle > span { display: flex; align-items: center; gap: .65rem; }
+.o_cti_workspace_group_toggle > span i, .o_cti_workspace_group_indicator { color: #4bc2ed; }
+.o_cti_workspace_group_toggle:focus-visible { outline: 2px solid #69c9ef; outline-offset: 2px; }
+.o_cti_workspace_tools { padding: .05rem 0 0 .35rem; }
+.o_cti_workspace_menu_item { display: flex; width: 100%; align-items: center; gap: .7rem; margin: .18rem 0; padding: .72rem .65rem; border: 0; border-radius: .35rem; background: transparent; color: #d5e0ed; text-align: left; font-size: .88rem; transition: background-color .15s ease, color .15s ease; }
+.o_cti_workspace_menu_item:hover { background: rgba(215, 230, 246, .12); color: #fff; }
+.o_cti_workspace_menu_item.active { background: #d5e0ed; color: #172b45; font-weight: 600; }
+.o_cti_workspace_menu_item i { color: #4bc2ed; }
+.o_cti_workspace_menu_item.active i { color: #314d70; }
+.o_cti_workspace_menu_item:focus-visible { outline: 2px solid #4a8776; outline-offset: 2px; }
+.o_cti_workspace_menu_item i { width: 1.1rem; text-align: center; }
+.o_cti_workspace_content { padding: clamp(1.25rem, 4vw, 2.5rem); }
+.o_cti_workspace_panel h2 { margin: 0; color: #263b33; font-size: 1.35rem; font-weight: 600; }
+.o_cti_workspace_panel .o_cti_eyebrow { margin: 0 0 .45rem; color: #4c8375; font-family: "SFMono-Regular", Consolas, monospace; font-size: .63rem; font-weight: 700; letter-spacing: .1em; }
+.o_cti_workspace_description { margin: .45rem 0 1.5rem; color: #68776f; }
+.o_cti_phone_form { max-width: 34rem; }
+.o_cti_phone_form label { display: block; margin-bottom: .45rem; color: #35463e; font-size: .88rem; font-weight: 600; }
+.o_cti_phone_input_row { display: flex; gap: .65rem; }
+.o_cti_phone_input_row input { min-width: 0; flex: 1; padding: .7rem .8rem; border: 1px solid #ccd9d1; border-radius: .35rem; background: #fff; color: #263b33; }
+.o_cti_phone_input_row input:focus { border-color: #4c8375; outline: 2px solid rgba(76, 131, 117, .18); }
+.o_cti_phone_input_row .btn { border-color: #39766b; background: #39766b; }
+.o_cti_form_notice { margin: .85rem 0 0; color: #64736d; font-size: .84rem; }
 @media (max-width: 767.98px) {
     .o_cti_intelligence_catalog { grid-template-columns: 1fr; }
     .o_cti_catalog_utility { align-items: flex-start; flex-direction: column; gap: .45rem; font-size: .59rem; }
@@ -211,6 +245,10 @@
         .o_cti_hero_panel { margin-top: .25rem; }
     }
     .o_cti_member { padding-top: 1.5rem !important; }
+    .o_cti_subcategory_workspace { grid-template-columns: 1fr; }
+    .o_cti_workspace_sidebar { display: block; border-right: 0; border-bottom: 1px solid #183556; }
+    .o_cti_workspace_menu_title { flex: none; }
+    .o_cti_phone_input_row { align-items: stretch; flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {

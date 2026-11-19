@@ -22,6 +22,7 @@
     'assets': {
         'web.assets_frontend': [
             'cti_core/static/src/js/cti_network_background.js',
+            'cti_core/static/src/js/cti_subcategory_workspace.js',
             'cti_core/static/src/scss/cti_portal.scss',
         ],
     },

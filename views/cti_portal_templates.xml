@@ -108,8 +108,7 @@
                                 <t t-foreach="item['subcategories']" t-as="subcategory">
                                     <a class="o_cti_subgroup_card o_cti_subgroup_link"
                                        t-att-href="'/my/consultas/' + subcategory.code"
-                                       target="_blank" rel="noopener"
-                                       t-attf-aria-label="Abrir #{subcategory.name} en una pestaña nueva">
+                                       t-attf-aria-label="Abrir #{subcategory.name}">
                                         <span class="o_cti_subgroup_content">
                                             <span class="o_cti_subgroup_code" t-out="subcategory.code"/>
                                             <h3 t-out="subcategory.name"/>
@@ -129,12 +128,95 @@
         <t t-call="portal.portal_layout">
             <t t-set="page_name" t-value="'cti_intelligence_subcategory'"/>
             <main class="container py-4 o_cti_member o_cti_subcategory_page">
-                <header class="o_cti_member_heading">
-                    <p class="o_cti_eyebrow" t-out="category.name"/>
-                    <h1 t-out="subcategory.name"/>
-                    <p class="o_cti_subcategory_code" t-out="subcategory.code"/>
-                </header>
-                <section class="o_cti_subcategory_workspace" aria-label="Área de trabajo"/>
+                <section class="o_cti_subcategory_workspace" aria-label="Área de trabajo">
+                    <aside class="o_cti_workspace_sidebar" aria-label="Menú de consultas">
+                        <button type="button" class="o_cti_workspace_group_toggle" data-cti-group-toggle="o_cti_analysis_menu" aria-controls="o_cti_analysis_menu" aria-expanded="true">
+                            <span><i class="fa fa-cubes" aria-hidden="true"/> ANÁLISIS</span>
+                            <i class="fa fa-minus-square-o o_cti_workspace_group_indicator" aria-hidden="true"/>
+                        </button>
+                        <nav id="o_cti_analysis_menu" class="o_cti_workspace_tools" aria-label="Análisis">
+                            <button type="button" class="o_cti_workspace_menu_item active"
+                                    data-cti-panel="phone" aria-controls="o_cti_panel_phone" aria-expanded="true">
+                                <i class="fa fa-mobile" aria-hidden="true"/> Búsqueda por celular
+                            </button>
+                            <button type="button" class="o_cti_workspace_menu_item"
+                                    data-cti-panel="identity" aria-controls="o_cti_panel_identity" aria-expanded="false">
+                                <i class="fa fa-user-o" aria-hidden="true"/> Consulta de identidad
+                            </button>
+                            <button type="button" class="o_cti_workspace_menu_item"
+                                    data-cti-panel="records" aria-controls="o_cti_panel_records" aria-expanded="false">
+                                <i class="fa fa-folder-o" aria-hidden="true"/> Registros públicos
+                            </button>
+                        </nav>
+                        <button type="button" class="o_cti_workspace_group_toggle" data-cti-group-toggle="o_cti_history_menu" aria-controls="o_cti_history_menu" aria-expanded="false">
+                            <span><i class="fa fa-history" aria-hidden="true"/> HISTORIAL</span>
+                            <i class="fa fa-plus-square-o o_cti_workspace_group_indicator" aria-hidden="true"/>
+                        </button>
+                        <nav id="o_cti_history_menu" class="o_cti_workspace_tools" aria-label="Historial" hidden="hidden">
+                            <button type="button" class="o_cti_workspace_menu_item" data-cti-panel="history" aria-controls="o_cti_panel_history" aria-expanded="false">
+                                <i class="fa fa-list-alt" aria-hidden="true"/> Consultas recientes
+                            </button>
+                        </nav>
+                        <button type="button" class="o_cti_workspace_group_toggle" data-cti-group-toggle="o_cti_guides_menu" aria-controls="o_cti_guides_menu" aria-expanded="false">
+                            <span><i class="fa fa-book" aria-hidden="true"/> GUÍAS</span>
+                            <i class="fa fa-plus-square-o o_cti_workspace_group_indicator" aria-hidden="true"/>
+                        </button>
+                        <nav id="o_cti_guides_menu" class="o_cti_workspace_tools" aria-label="Guías" hidden="hidden">
+                            <button type="button" class="o_cti_workspace_menu_item" data-cti-panel="guides" aria-controls="o_cti_panel_guides" aria-expanded="false">
+                                <i class="fa fa-info-circle" aria-hidden="true"/> Guía de uso
+                            </button>
+                        </nav>
+                        <button type="button" class="o_cti_workspace_group_toggle" data-cti-group-toggle="o_cti_statistics_menu" aria-controls="o_cti_statistics_menu" aria-expanded="false">
+                            <span><i class="fa fa-bar-chart" aria-hidden="true"/> ESTADÍSTICA</span>
+                            <i class="fa fa-plus-square-o o_cti_workspace_group_indicator" aria-hidden="true"/>
+                        </button>
+                        <nav id="o_cti_statistics_menu" class="o_cti_workspace_tools" aria-label="Estadística" hidden="hidden">
+                            <button type="button" class="o_cti_workspace_menu_item" data-cti-panel="statistics" aria-controls="o_cti_panel_statistics" aria-expanded="false">
+                                <i class="fa fa-pie-chart" aria-hidden="true"/> Resumen de actividad
+                            </button>
+                        </nav>
+                    </aside>
+                    <div class="o_cti_workspace_content">
+                        <section id="o_cti_panel_phone" class="o_cti_workspace_panel" data-cti-content="phone">
+                            <p class="o_cti_eyebrow">HERRAMIENTA DE CONSULTA</p>
+                            <h2>Búsqueda por celular</h2>
+                            <p class="o_cti_workspace_description">Ingresa el número que deseas consultar.</p>
+                            <form class="o_cti_phone_form" action="#" method="get">
+                                <label for="cti_phone_number">Número de celular</label>
+                                <div class="o_cti_phone_input_row">
+                                    <input id="cti_phone_number" name="phone" type="tel" inputmode="tel"
+                                           autocomplete="tel" placeholder="Ej. 987 654 321" required="required"/>
+                                    <button class="btn btn-primary" type="submit">Consultar</button>
+                                </div>
+                            </form>
+                        </section>
+                        <section id="o_cti_panel_identity" class="o_cti_workspace_panel" data-cti-content="identity" hidden="hidden">
+                            <p class="o_cti_eyebrow">PRÓXIMAMENTE</p>
+                            <h2>Consulta de identidad</h2>
+                            <p class="o_cti_workspace_description">Esta herramienta estará disponible próximamente.</p>
+                        </section>
+                        <section id="o_cti_panel_records" class="o_cti_workspace_panel" data-cti-content="records" hidden="hidden">
+                            <p class="o_cti_eyebrow">PRÓXIMAMENTE</p>
+                            <h2>Registros públicos</h2>
+                            <p class="o_cti_workspace_description">Esta herramienta estará disponible próximamente.</p>
+                        </section>
+                        <section id="o_cti_panel_history" class="o_cti_workspace_panel" data-cti-content="history" hidden="hidden">
+                            <p class="o_cti_eyebrow">HISTORIAL</p>
+                            <h2>Consultas recientes</h2>
+                            <p class="o_cti_workspace_description">Aquí se mostrarán las consultas realizadas.</p>
+                        </section>
+                        <section id="o_cti_panel_guides" class="o_cti_workspace_panel" data-cti-content="guides" hidden="hidden">
+                            <p class="o_cti_eyebrow">GUÍAS</p>
+                            <h2>Guía de uso</h2>
+                            <p class="o_cti_workspace_description">Aquí encontrarás instrucciones para usar las herramientas.</p>
+                        </section>
+                        <section id="o_cti_panel_statistics" class="o_cti_workspace_panel" data-cti-content="statistics" hidden="hidden">
+                            <p class="o_cti_eyebrow">ESTADÍSTICA</p>
+                            <h2>Resumen de actividad</h2>
+                            <p class="o_cti_workspace_description">Aquí se mostrarán estadísticas de actividad.</p>
+                        </section>
+                    </div>
+                </section>
             </main>
         </t>
     </template>
